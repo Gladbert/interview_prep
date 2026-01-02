@@ -1,0 +1,58 @@
+{
+    "placeholderImages": [
+      {
+        "id": "recruitment1",
+        "description": "Abstract office building for a tech program",
+        "imageUrl": "https://images.unsplash.com/photo-1597672996375-4d21cad0cbb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxvZmZpY2UlMjB0ZWNofGVufDB8fHx8MTc2MTIwNDA3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "office tech"
+      },
+      {
+        "id": "recruitment2",
+        "description": "People collaborating on a whiteboard for an internship",
+        "imageUrl": "https://images.unsplash.com/photo-1492366254240-43affaefc3e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NTk3NzQzNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "team collaboration"
+      },
+      {
+        "id": "recruitment3",
+        "description": "Abstract data visualization for a data science fellowship",
+        "imageUrl": "https://images.unsplash.com/photo-1488229297570-58520851e868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGF0YSUyMHZpc3VhbGl6YXRpb258ZW58MHx8fHwxNzU5NzYxMDI4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "data visualization"
+      },
+      {
+        "id": "training-iq",
+        "description": "Abstract representation of a brain or gears for IQ tests",
+        "imageUrl": "https://images.unsplash.com/photo-1737268421178-870092f8aa2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxicmFpbiUyMGxvZ2ljfGVufDB8fHx8MTc2MTIzNzM1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "brain logic"
+      },
+      {
+        "id": "training-psycho",
+        "description": "Rorschach-like inkblot for psycho-tests",
+        "imageUrl": "https://images.unsplash.com/photo-1707622435416-6a0fbed6ee33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMHBzeWNob2xvZ3l8ZW58MHx8fHwxNzYxMjM3MzUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "abstract psychology"
+      },
+      {
+        "id": "training-interview",
+        "description": "Two people in a professional interview setting",
+        "imageUrl": "https://images.unsplash.com/photo-1459499362902-55a20553e082?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxqb2IlMjBpbnRlcnZpZXd8ZW58MHx8fHwxNzYxMjE1MzY4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "job interview"
+      },
+      {
+        "id": "training-written-test",
+        "description": "A person writing on a paper for a written test",
+        "imageUrl": "https://images.unsplash.com/photo-1614492898637-435e0f87cef8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d3JpdGluZyUyMHRlc3R8ZW58MHx8fHwxNzYxMjM3MzUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "writing test"
+      },
+      {
+        "id": "training-user-interview",
+        "description": "A group of people in a meeting for a user interview",
+        "imageUrl": "https://images.unsplash.com/photo-1518349619113-03114f06ac3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx1c2VyJTIwcmVzZWFyY2h8ZW58MHx8fHwxNzYxMTIzMTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "user research"
+      },
+      {
+        "id": "training-clevel-interview",
+        "description": "An executive in a modern office, suggesting a C-level interview",
+        "imageUrl": "https://images.unsplash.com/photo-1758518730384-be3d205838e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxleGVjdXRpdmUlMjBpbnRlcnZpZXd8ZW58MHx8fHwxNzYxMjM3MzUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "imageHint": "executive interview"
+      }
+    ]
+  }
