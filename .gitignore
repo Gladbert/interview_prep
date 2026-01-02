@@ -11,6 +11,9 @@
 !.yarn/versions
 .history
 
+# interview_app
+notes.md
+
 # testing
 /coverage
 
