@@ -65,6 +65,7 @@ import {
       rank: 1,
       score: 9850,
       completionTime: 720,
+      role: 'Software Engineer',
     },
     {
       id: 'u3',
@@ -73,6 +74,7 @@ import {
       rank: 2,
       score: 9700,
       completionTime: 750,
+      role: 'Product Manager',
     },
     {
       id: 'u4',
@@ -81,6 +83,7 @@ import {
       rank: 3,
       score: 9700,
       completionTime: 740,
+      role: 'Software Engineer',
     },
     {
       id: 'u5',
@@ -89,6 +92,7 @@ import {
       rank: 4,
       score: 9200,
       completionTime: 780,
+      role: 'Data Scientist',
     },
     {
       id: 'u1',
@@ -97,6 +101,7 @@ import {
       rank: 5,
       score: 9150,
       completionTime: 765,
+      role: 'Software Engineer',
     },
     {
       id: 'u6',
@@ -105,6 +110,7 @@ import {
       rank: 6,
       score: 8900,
       completionTime: 800,
+      role: 'UX/UI Designer',
     },
     {
       id: 'u7',
@@ -113,6 +119,7 @@ import {
       rank: 7,
       score: 8750,
       completionTime: 810,
+      role: 'Product Manager',
     },
     {
       id: 'u8',
@@ -121,6 +128,7 @@ import {
       rank: 8,
       score: 8600,
       completionTime: 820,
+      role: 'Data Analyst',
     },
      {
       id: 'u9',
@@ -129,6 +137,7 @@ import {
       rank: 9,
       score: 8450,
       completionTime: 830,
+      role: 'Software Engineer',
     },
     {
       id: 'u10',
@@ -137,6 +146,7 @@ import {
       rank: 10,
       score: 8450,
       completionTime: 825,
+      role: 'Marketing Specialist',
     },
   ];
   

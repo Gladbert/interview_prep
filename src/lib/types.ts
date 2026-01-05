@@ -7,6 +7,7 @@ export interface User {
   rank: number;
   score: number;
   completionTime: number; // in seconds
+  role?: string;
 }
 
 export interface Session {

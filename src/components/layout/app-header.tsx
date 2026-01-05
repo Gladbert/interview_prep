@@ -1,11 +1,16 @@
 'use client';
 
-import { LogOut, Search, User, Settings } from 'lucide-react';
+import { LogOut, Search, User, Settings, BrainCircuit, Star, Presentation } from 'lucide-react';
 import Link from 'next/link';
 import { AppLogo } from '@/components/icons';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,10 +36,49 @@ export function AppHeader() {
         </Link>
       </div>
 
-      <div className="flex w-full items-center gap-4 ml-auto">
         <div className="relative ml-auto hidden flex-1 max-w-xs sm:block">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input type="search" placeholder="Search..." className="pl-8" />
+          <Popover>
+            <PopoverTrigger asChild>
+              <div className="relative">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search modules..."
+                  className="pl-8 w-full cursor-text text-left"
+                />
+              </div>
+            </PopoverTrigger>
+            <PopoverContent className="w-80 p-0" align="start">
+              <div className="p-2">
+                <p className="text-sm font-medium text-muted-foreground px-2 py-1.5 focus:bg-accent focus:text-accent-foreground">
+                  Suggestions
+                </p>
+                <div className="grid gap-1">
+                  <Link
+                    href="/training/iq"
+                    className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <BrainCircuit className="h-4 w-4" />
+                    <span>IQ Assessment</span>
+                  </Link>
+                   <Link
+                    href="/training/psycho"
+                    className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <Star className="h-4 w-4" />
+                    <span>Personality Test</span>
+                  </Link>
+                  <Link
+                    href="/training/interview-sim"
+                    className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <Presentation className="h-4 w-4" />
+                    <span>Interview Sim</span>
+                  </Link>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
         {isMobile && (
           <DropdownMenu>
@@ -65,7 +109,7 @@ export function AppHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-      </div>
+     
     </header>
   );
 }

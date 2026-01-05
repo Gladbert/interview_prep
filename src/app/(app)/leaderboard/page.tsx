@@ -56,7 +56,12 @@ const getRankColor = (rank: number) => {
 };
 
 const RankChangeIndicator = ({ user }: { user: User }) => {
-  const change = useMemo(() => Math.floor(Math.random() * 3) - 1, [user.id]);
+  // Use a deterministic "random" value based on user ID to avoid hydration mismatch
+  const change = useMemo(() => {
+     const seed = user.id.charCodeAt(user.id.length - 1);
+     // Simulate range -1 to 1
+     return (seed % 3) - 1; 
+  }, [user.id]);
 
   if (change > 0) {
     return (
@@ -146,8 +151,21 @@ export default function LeaderboardPage() {
 
   const displayedLeaderboard = useMemo(() => {
     return processedLeaderboard
+      .filter((user) => {
+          if (selectedJob === 'Overall') return true;
+          // If a specific job role is selected, only show users who have that role
+          // AND show their score for that specific job track (or overall score if preferred, but usually leaderboard is role-specific)
+          // The previous logic calculated scores for ALL roles for EVERY user.
+          // Let's filter by the user's actual role.
+          return user.role === selectedJob;
+      })
       .map((user) => {
-        const jobData = user.jobScores[selectedJob];
+        // If sorting by Overall, use Overall score.
+        // If sorting by a specific job (e.g. Software Engineer), we enter this block.
+        // The user IS a Software Engineer (filtered above).
+        // We should show their score for that job track.
+        const jobData = user.jobScores[selectedJob] || user.jobScores['Overall'];
+        
         if (!jobData) {
           return { ...user, score: 0, completionTime: 0, rank: user.rank };
         }
