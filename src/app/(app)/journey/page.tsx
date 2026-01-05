@@ -30,6 +30,7 @@ import {
   Sword,
   Crown,
   Sparkles,
+  MapPin,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -38,6 +39,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { Badge } from '@/components/ui/badge';
 
 const masteryTiers = [
   {
@@ -188,110 +190,150 @@ export default function JourneyPage() {
   const currentTier = getMasteryTier(totalMastery);
   const totalAchievements = mockAchievements.length;
   
+  const nextTierIndex = masteryTiers.findIndex(t => t.level === currentTier.level) + 1;
+  const nextTier = masteryTiers[nextTierIndex];
 
   return (
     <PageWrapper
-      title="Your Skills Journey"
-      description="Level up your skills, earn badges, and become a master!"
+      title="Skill Journey"
+      description="Track your path to mastery."
     >
-      <div className="grid gap-8 lg:grid-cols-3">
-        <div className="lg:col-span-2">
-          <Card className="mb-8">
-            <CardHeader className="text-center">
-              <div className="flex justify-center mb-4">
-                <currentTier.icon
-                  className={cn('h-16 w-16 sm:h-24 sm:w-24', currentTier.color)}
-                />
+      <div className="grid gap-6 lg:gap-8 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-6 lg:space-y-8">
+            {/* Hero Card */}
+          <Card className="overflow-hidden relative border-none shadow-2xl bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+            <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10" />
+            <CardHeader className="text-center relative z-10 pb-10 pt-12">
+               <div className="absolute top-4 right-4 animate-pulse">
+                   <Sparkles className="h-6 w-6 text-yellow-400 opacity-70" />
+               </div>
+              <div className="flex justify-center mb-6">
+                  <div className={cn("p-6 rounded-full bg-background shadow-2xl ring-4 ring-primary/20 animate-in zoom-in duration-500", currentTier.bgColor)}>
+                    <currentTier.icon
+                        className={cn('h-20 w-20 sm:h-24 sm:w-24 drop-shadow-lg', currentTier.color)}
+                    />
+                </div>
               </div>
-              <CardTitle className="text-3xl sm:text-4xl">
-                You are a {currentTier.title}!
-              </CardTitle>
-              <CardDescription className="text-base sm:text-lg">
-                Overall Mastery: {totalMastery} / {maxMastery}
-              </CardDescription>
+              <div className="space-y-2">
+                  <CardTitle className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
+                    {currentTier.title}
+                  </CardTitle>
+                  <CardDescription className="text-lg font-medium text-muted-foreground">
+                    Level {currentTier.level} • {totalMastery} Mastery Points
+                  </CardDescription>
+              </div>
             </CardHeader>
-            <CardContent>
-              {currentTier.nextLevelMastery ? (
-                <>
-                  <Progress
-                    value={
-                      ((totalMastery - currentTier.minMastery) /
-                        (currentTier.nextLevelMastery -
-                          currentTier.minMastery)) *
-                      100
-                    }
-                    className="h-4"
-                  />
-                  <p className="text-center text-muted-foreground mt-2">
-                    {currentTier.nextLevelMastery - totalMastery} points to{' '}
-                    {masteryTiers[currentTier.level + 1]?.title}
+            <CardContent className="px-8 pb-10 relative z-10">
+              {nextTier ? (
+                <div className="space-y-4 max-w-lg mx-auto">
+                    <div className="flex justify-between text-sm font-bold text-muted-foreground uppercase tracking-widest">
+                        <span>Current</span>
+                        <span>Next: {nextTier.title}</span>
+                    </div>
+                   <div className="h-6 w-full bg-secondary/50 rounded-full overflow-hidden p-1 box-content border border-white/20 shadow-inner">
+                        <div 
+                            className="h-full bg-gradient-to-r from-primary to-purple-500 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(var(--primary),0.5)] relative"
+                            style={{ 
+                                width: `${Math.min(100, Math.max(0, ((totalMastery - currentTier.minMastery) / (nextTier.minMastery - currentTier.minMastery)) * 100))}%` 
+                            }}
+                        >
+                             <div className="absolute right-0 top-0 bottom-0 w-2 bg-white/50 blur-sm" />
+                        </div>
+                   </div>
+                  <p className="text-center text-sm font-medium text-muted-foreground">
+                    <span className="text-primary font-bold">{nextTier.minMastery - totalMastery}</span> points until level up
                   </p>
-                </>
+                </div>
               ) : (
-                <p className="text-center font-bold text-primary text-lg">
-                  Maximum Level Reached! Congratulations, Immortal!
-                </p>
+                <div className="text-center py-4">
+                     <Badge className="text-lg px-6 py-2 bg-gradient-to-r from-amber-200 to-yellow-500 text-yellow-900 border-none shadow-lg">
+                        <Crown className="mr-2 h-5 w-5" /> Max Level Reached
+                    </Badge>
+                </div>
               )}
             </CardContent>
           </Card>
-          <div className="space-y-2 mb-6">
-            <h2 className="font-headline text-2xl font-bold tracking-tight text-primary">
-              Mastery Ranks
+
+          {/* Mastery Path */}
+          <div className="space-y-4">
+            <h2 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
+                <MapPin className="h-6 w-6 text-primary" />
+                The Path to Legend
             </h2>
-            <p className="text-muted-foreground">
-              This is the path to become an Immortal.
-            </p>
-          </div>
+            <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                {masteryTiers.map((tier) => {
+                const isAchieved = totalMastery >= tier.minMastery;
+                const isCurrent = tier.level === currentTier.level;
+                const isNext = tier.level === (currentTier.level + 1);
 
-          <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {masteryTiers.map((tier) => {
-              const isAchieved = totalMastery >= tier.minMastery;
-              const isCurrent = tier.level === currentTier.level;
-
-              return (
-                <Card
-                  key={tier.level}
-                  className={cn(
-                    'flex flex-col transition-all',
-                    isCurrent ? 'ring-2 ring-primary shadow-lg' : 'opacity-50',
-                    isAchieved && 'opacity-100'
-                  )}
-                >
-                  <CardHeader className="flex-row items-center gap-4 space-y-0 p-3 sm:p-4">
-                    <div
-                      className={cn(
-                        'flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg shrink-0',
-                        tier.bgColor
-                      )}
+                return (
+                    <Card
+                    key={tier.level}
+                    className={cn(
+                        'flex flex-col items-center p-4 text-center transition-all duration-300 relative overflow-hidden group',
+                        isCurrent ? 'ring-2 ring-primary shadow-xl bg-card scale-105 z-10' : 'bg-card/50',
+                        !isAchieved && !isNext && 'opacity-40 grayscale',
+                         isNext && 'opacity-80 border-dashed border-2 border-primary/50'
+                    )}
                     >
-                      <tier.icon className={cn('h-5 w-5 sm:h-6 sm:w-6', tier.color)} />
+                    {isAchieved && (
+                        <div className="absolute top-2 right-2 text-primary">
+                            <CheckCircle2 className="h-4 w-4" />
+                        </div>
+                    )}
+                    {!isAchieved && !isNext && (
+                         <div className="absolute top-2 right-2 text-muted-foreground">
+                            <Lock className="h-4 w-4" />
+                        </div>
+                    )}
+
+                    <div
+                        className={cn(
+                        'flex h-12 w-12 items-center justify-center rounded-full mb-3 transition-transform group-hover:scale-110 duration-300',
+                        tier.bgColor,
+                        isAchieved ? "bg-opacity-100" : "bg-opacity-50"
+                        )}
+                    >
+                        <tier.icon className={cn('h-6 w-6', tier.color)} />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <CardTitle className="text-sm sm:text-base truncate">{tier.title}</CardTitle>
-                      <CardDescription className={cn('font-bold text-xs', tier.color)}>
-                        Level {tier.level}
-                      </CardDescription>
+                    
+                    <div className="space-y-1">
+                        <div className="font-bold text-sm leading-none">{tier.title}</div>
+                        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Lvl {tier.level}</div>
                     </div>
-                  </CardHeader>
-                </Card>
-              );
-            })}
+                    
+                    {/* Progress Line Connector (Visual only, simple implementation) */}
+                    </Card>
+                );
+                })}
+            </div>
           </div>
         </div>
-        <div>
-          <Card>
+
+        {/* Sidebar Achievements */}
+        <div className="space-y-6">
+          <Card className="h-full border-l-4 border-l-primary/20 shadow-md">
             <CardHeader>
-              <CardTitle>Achievements</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                  <Trophy className="h-5 w-5 text-yellow-500" />
+                  Achievements
+              </CardTitle>
               <CardDescription>
-                {unlockedAchievements.length} of {totalAchievements} unlocked
+                {unlockedAchievements.length} / {totalAchievements} Unlocked
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Progress
-                value={(unlockedAchievements.length / totalAchievements) * 100}
-                className="mb-4"
-              />
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+              <div className="mb-6 space-y-2">
+                 <div className="flex justify-between text-xs font-semibold mb-1">
+                     <span>Collection Progress</span>
+                     <span>{Math.round((unlockedAchievements.length / totalAchievements) * 100)}%</span>
+                 </div>
+                <Progress
+                    value={(unlockedAchievements.length / totalAchievements) * 100}
+                    className="h-2"
+                />
+              </div>
+              <div className="grid grid-cols-3 gap-3">
                 {mockAchievements.map((ach) => (
                   <AchievementCard key={ach.id} achievement={ach} />
                 ))}
